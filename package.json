@@ -8,7 +8,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "next dev"
+    "dev": "next dev",
+    "start": "next start",
+    "build": "next build"
   },
   "keywords": [],
   "author": "",
