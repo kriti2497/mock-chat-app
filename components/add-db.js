@@ -1,4 +1,4 @@
-import { Button, Grid, TextField } from '@mui/material';
+import { Button, Grid, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import checkUserExists from '../utils/checkUserExists';
@@ -51,11 +51,10 @@ const AddDB = () => {
     }
   };
   return (
-    <Grid item>
-      <h4>Add User to DB</h4>
+    <Grid item m={2}>
+      <Typography>Add User to DB</Typography>
       <TextField
         id='outlined-basic1'
-        label='Outlined'
         placeholder='Name'
         value={name}
         onChange={(e) => setname(e.target.value)}
@@ -63,7 +62,6 @@ const AddDB = () => {
       />
       <TextField
         id='outlined-basic'
-        label='Outlined'
         placeholder='Email'
         value={email}
         onChange={(e) => setemail(e.target.value)}

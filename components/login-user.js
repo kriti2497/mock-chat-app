@@ -1,4 +1,4 @@
-import { Button, Grid, TextField } from '@mui/material';
+import { Button, Grid, TextField, Typography } from '@mui/material';
 import React, { useState, useContext } from 'react';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import checkUserExists from '../utils/checkUserExists';
@@ -20,11 +20,11 @@ const LoginUser = () => {
     }
   };
   return (
-    <Grid item>
-      <h4>Login User to DB</h4>
+    <Grid item m={2}>
+      <Typography>Login User to DB</Typography>
       <TextField
         id='outlined-basic'
-        label='Outlined'
+        placeholder='Email'
         value={email}
         onChange={(e) => setemail(e.target.value)}
         variant='outlined'

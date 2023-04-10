@@ -21,8 +21,8 @@ const MessagesWindow = () => {
   const { userAuth } = useContext(AuthContext);
 
   useEffect(() => {
-    endOfMsgRef.current.scrollIntoView();
-  }, []);
+    scrollToBottom();
+  }, [messagesSnapshot]);
 
   const scrollToBottom = () => {
     endOfMsgRef.current.scrollIntoView({
