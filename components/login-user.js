@@ -10,19 +10,17 @@ const LoginUser = () => {
   const userRef = db.collection('users');
   const [usersSnapshot, loading, error] = useCollection(userRef);
 
-  const { userAuth, setuserAuth } = useContext(AuthContext);
+  const { userAuth, login } = useContext(AuthContext);
 
   const loginUser = () => {
-    console.log('Logged In');
     if (checkUserExists(usersSnapshot, email)) {
-      setuserAuth(email);
+      login(email);
     } else {
       alert('User doesnt exist in DB');
     }
   };
   return (
     <Grid item>
-      {console.log(userAuth)}
       <h4>Login User to DB</h4>
       <TextField
         id='outlined-basic'

@@ -33,7 +33,6 @@ const AddDB = () => {
           alert('User added');
         })
         .catch((err) => {
-          console.log(err);
           alert('Error Occured');
         });
 
