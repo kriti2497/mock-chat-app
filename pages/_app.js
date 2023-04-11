@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import AuthContext from '../context/auth-context';
 import Login from './login';
 import '../styles/index.css';
-
+import { useRouter } from 'next/router';
 export default function MyApp({ Component, pageProps }) {
   const [userAuth, setuserAuth] = useState('');
 
+  const router = useRouter();
   useEffect(() => {
     const value = localStorage.getItem('user');
     if (value) {
@@ -20,6 +21,7 @@ export default function MyApp({ Component, pageProps }) {
   const logout = () => {
     setuserAuth('');
     localStorage.removeItem('user');
+    router.push('/');
   };
 
   if (!userAuth) {
