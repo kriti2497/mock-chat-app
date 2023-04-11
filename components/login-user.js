@@ -20,7 +20,7 @@ const LoginUser = () => {
     }
   };
   return (
-    <Grid item m={2}>
+    <Grid item p={2}>
       <Typography>Login User to DB</Typography>
       <TextField
         id='outlined-basic'

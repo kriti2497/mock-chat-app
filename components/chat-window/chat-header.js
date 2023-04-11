@@ -1,8 +1,16 @@
 import { Avatar, Grid, Typography } from '@mui/material';
 import React from 'react';
+import stringAvatar from '../../utils/avatarStyling';
 import getRecipientEmail from '../../utils/getRecipientEmail';
 
 const ChatHeader = ({ chatSnapshot, userAuth }) => {
+  const chatTitleDisplay = (chat) => {
+    if (!chat.isGroup) {
+      return getRecipientEmail(chat.users, userAuth);
+    } else {
+      return chat.groupName;
+    }
+  };
   return (
     <Grid
       item
@@ -14,11 +22,15 @@ const ChatHeader = ({ chatSnapshot, userAuth }) => {
       }}
       height='10vh'
     >
-      <Avatar />
+      <Avatar
+        {...stringAvatar(
+          chatSnapshot
+            ? chatTitleDisplay(chatSnapshot?.data()).toUpperCase()
+            : ''
+        )}
+      />
       <Typography marginLeft={2}>
-        {chatSnapshot
-          ? getRecipientEmail(chatSnapshot?.data().users, userAuth)
-          : ''}
+        {chatSnapshot ? chatTitleDisplay(chatSnapshot?.data()) : ''}
       </Typography>
     </Grid>
   );

@@ -25,6 +25,14 @@ const ChatForm = ({ scrollToBottom }) => {
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       })
       .then(() => {
+        db.collection('chats').doc(chatId).set(
+          {
+            lastUpdated: firebase.firestore.FieldValue.serverTimestamp(),
+          },
+          {
+            merge: true,
+          }
+        );
         setMessage('');
         scrollToBottom();
       });

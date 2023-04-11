@@ -4,8 +4,9 @@ import { db } from '../../config/firebase';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import stringAvatar from '../../utils/avatarStyling';
 
-const ChatCard = ({ recipientEmail, chatid, highlightActiveChat }) => {
+const ChatCard = ({ recipientEmail, chatid }) => {
   const router = useRouter();
   const recipientRef = db
     .collection('users')
@@ -19,22 +20,16 @@ const ChatCard = ({ recipientEmail, chatid, highlightActiveChat }) => {
         alignItems={'center'}
         p={2}
         sx={{
-          backgroundColor:
-            highlightActiveChat === recipientSnapshot?.docs[0].data().email
-              ? '#4884df'
-              : 'white',
-          color:
-            highlightActiveChat === recipientSnapshot?.docs[0].data().email
-              ? 'white'
-              : 'black',
+          backgroundColor: chatid === router.query.id ? '#4884df' : 'white',
+          color: chatid === router.query.id ? 'white' : 'black',
           borderBottom: '1px solid #8080803d',
           cursor: 'pointer',
         }}
       >
         <Avatar
-          sx={{
-            marginRight: '10px',
-          }}
+          {...stringAvatar(
+            recipientSnapshot ? recipientSnapshot.docs[0].data().name : ''
+          )}
         />
         <Typography>{recipientSnapshot?.docs[0].data().name}</Typography>
       </Grid>
