@@ -4,6 +4,7 @@ import { db } from '../../config/firebase';
 import { useRouter } from 'next/router';
 import firebase from 'firebase';
 import AuthContext from '../../context/auth-context';
+import SendIcon from '@mui/icons-material/Send';
 
 const ChatForm = ({ scrollToBottom }) => {
   const [message, setMessage] = useState('');
@@ -41,15 +42,33 @@ const ChatForm = ({ scrollToBottom }) => {
     <Grid>
       <form
         onSubmit={sendMessage}
-        style={{ display: 'flex', alignItems: 'center', height: '10vh' }}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          height: '10vh',
+          backgroundColor: '#f1f1f1',
+        }}
       >
         <TextField
-          sx={{ flex: '1' }}
+          sx={{
+            flex: '1',
+          }}
+          InputProps={{
+            style: {
+              margin: '10px',
+              height: '35px',
+              backgroundColor: 'white',
+            },
+          }}
           onChange={(e) => setMessage(e.target.value)}
           value={message}
         />
-        <Button variant='contained' type='submit'>
-          Send
+        <Button variant='text' type='submit'>
+          <SendIcon
+            sx={{
+              color: '42a5f5',
+            }}
+          />
         </Button>
       </form>
     </Grid>

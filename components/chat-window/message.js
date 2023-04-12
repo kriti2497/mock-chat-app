@@ -4,7 +4,7 @@ import moment from 'moment';
 import { db } from '../../config/firebase';
 import { useCollection } from 'react-firebase-hooks/firestore';
 
-const Message = ({ msgContent, currentUser }) => {
+const Message = ({ msgContent, currentUser, isGroup }) => {
   const userRef = db
     .collection('users')
     .where('email', '==', msgContent.sender);
@@ -27,7 +27,7 @@ const Message = ({ msgContent, currentUser }) => {
           backgroundColor: currentUser ? '#4884df' : 'white',
         }}
       >
-        {!currentUser && userSnapshot && (
+        {!currentUser && isGroup && userSnapshot && (
           <Typography
             sx={{
               fontSize: '13px',

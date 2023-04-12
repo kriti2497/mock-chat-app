@@ -21,9 +21,9 @@ function stringToColor(string) {
 export default function stringAvatar(name) {
   return {
     sx: {
-      bgcolor: stringToColor(name),
+      bgcolor: name ? stringToColor(name) : 'lightgray',
       marginRight: '10px',
     },
-    children: `${name.split(' ')[0][0]}`,
+    children: `${name ? name.split(' ')[0][0] : ' '}`,
   };
 }

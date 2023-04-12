@@ -9,7 +9,7 @@ const ChatScreen = ({ chatSnapshot }) => {
   return (
     <Grid display='flex' flexDirection={'column'} flex='1'>
       <ChatHeader chatSnapshot={chatSnapshot} userAuth={userAuth} />
-      <MessagesWindow />
+      <MessagesWindow chatSnapshot={chatSnapshot} />
     </Grid>
   );
 };

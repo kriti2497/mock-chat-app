@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import Message from './message';
 import AuthContext from '../../context/auth-context';
-const MessagesWindow = () => {
+const MessagesWindow = ({ chatSnapshot }) => {
   const router = useRouter();
   const messageRef = db
     .collection('chats')
@@ -42,6 +42,7 @@ const MessagesWindow = () => {
               key={eachMsg.id}
               msgContent={eachMsg.data()}
               currentUser={eachMsg.data().sender === userAuth}
+              isGroup={chatSnapshot && chatSnapshot.data().isGroup}
             />
           );
         })}
