@@ -63,13 +63,14 @@ const ChatHeader = ({ chatSnapshot, userAuth }) => {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={() => setOpenModal(true)}>Manage Group</MenuItem>
+        <MenuItem onClick={() => setOpenModal(true)}>Group Details</MenuItem>
       </Menu>
 
       <GroupSettings
         chatSnapshot={chatSnapshot}
         open={openModal}
         handleClose={() => setOpenModal(false)}
+        userAuth={userAuth}
       />
     </Grid>
   );

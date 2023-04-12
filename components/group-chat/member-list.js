@@ -6,7 +6,7 @@ import { db } from '../../config/firebase';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import checkUserExists from '../../utils/checkUserExists';
 
-const MemberList = ({ chatSnapshot }) => {
+const MemberList = ({ chatSnapshot, userAuth }) => {
   const userRef = db.collection('users');
   const [userSnapshot] = useCollection(userRef);
 
@@ -123,14 +123,16 @@ const MemberList = ({ chatSnapshot }) => {
         }}
       >
         <Typography>Members in this group</Typography>
-        <Tooltip title='Add a user'>
-          <PersonAddIcon
-            onClick={addUsertoGroup}
-            sx={{
-              cursor: 'pointer',
-            }}
-          />
-        </Tooltip>
+        {chatSnapshot.data().admin.includes(userAuth) && (
+          <Tooltip title='Add a user'>
+            <PersonAddIcon
+              onClick={addUsertoGroup}
+              sx={{
+                cursor: 'pointer',
+              }}
+            />
+          </Tooltip>
+        )}
       </Grid>
       <Grid>
         <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
@@ -138,6 +140,8 @@ const MemberList = ({ chatSnapshot }) => {
             chatSnapshot?.data().users.map((eachUser, index) => {
               return (
                 <MemberCard
+                  chatSnapshot={chatSnapshot}
+                  userAuth={userAuth}
                   isAdmin={chatSnapshot?.data().admin.includes(eachUser)}
                   deleteUserFromGroup={deleteUserFromGroup}
                   key={index}

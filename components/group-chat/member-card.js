@@ -13,7 +13,13 @@ import { db } from '../../config/firebase';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import stringAvatar from '../../utils/avatarStyling';
 
-const MemberCard = ({ user, deleteUserFromGroup, isAdmin }) => {
+const MemberCard = ({
+  user,
+  deleteUserFromGroup,
+  isAdmin,
+  chatSnapshot,
+  userAuth,
+}) => {
   const userRef = db.collection('users').where('email', '==', user);
   const [userSnapshot] = useCollection(userRef);
   return (
@@ -61,7 +67,7 @@ const MemberCard = ({ user, deleteUserFromGroup, isAdmin }) => {
         </Typography>
       )}
 
-      {!isAdmin && (
+      {!isAdmin && chatSnapshot.data().admin.includes(userAuth) && (
         <Tooltip title={'Remove user'}>
           <PersonRemoveIcon
             onClick={() => deleteUserFromGroup(user)}

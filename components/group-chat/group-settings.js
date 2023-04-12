@@ -23,7 +23,7 @@ const style = {
   overflow: 'hidden',
 };
 
-const GroupSettings = ({ open, handleClose, chatSnapshot }) => {
+const GroupSettings = ({ open, handleClose, chatSnapshot, userAuth }) => {
   return (
     <Modal
       open={open}
@@ -35,7 +35,7 @@ const GroupSettings = ({ open, handleClose, chatSnapshot }) => {
         <ModalHeader
           groupName={chatSnapshot ? chatSnapshot.data().groupName : ''}
         />
-        <MemberList chatSnapshot={chatSnapshot} />
+        <MemberList chatSnapshot={chatSnapshot} userAuth={userAuth} />
       </Box>
     </Modal>
   );
