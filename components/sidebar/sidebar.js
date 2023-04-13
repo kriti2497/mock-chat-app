@@ -12,7 +12,8 @@ const Sidebar = ({ currentlyActive }) => {
 
   const chatRef = db
     .collection('chats')
-    .where('users', 'array-contains', userAuth);
+    .where('users', 'array-contains', userAuth)
+    .orderBy('lastUpdated', 'desc');
 
   const userRef = db.collection('users');
 
