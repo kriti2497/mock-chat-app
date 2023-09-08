@@ -14,6 +14,7 @@ const AddDB = () => {
   const addToDB = async () => {
     if (email.trim() !== '' && name.trim() !== '') {
       if (checkUserExists(usersSnapshot, email)) {
+        console.log('test')
         alert('User exists');
         return;
       }
